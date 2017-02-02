@@ -39,8 +39,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       pip install codespell;
       gem install scss_lint;
-      npm install -g bower electron-installer-debian;
-      npm install -g electron-installer-debian;
+      npm install -g bower electron-installer-debian asar;
       brew install afsctool;
       brew install jq;
     fi
@@ -59,6 +58,13 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       ./scripts/build/docker/run-command.sh -r ${TARGET_ARCH} -s ${PWD} -c "xvfb-run --server-args=$XVFB_ARGS npm test";
     fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      make electron-installer-dmg electron-installer-app-zip;
+    fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      ./scripts/build/docker/run-command.sh -r ${TARGET_ARCH} -s ${PWD} -c "make electron-installer-appimage electron-installer-debian";
+    fi
+  - du -sh release/out/*
 
 notifications:
   email: false

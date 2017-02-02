@@ -43,7 +43,9 @@ build: off
 test_script:
   - node --version
   - npm --version
-  - cmd: npm test
+  - npm test
+  - make electron-installer-nsis electron-installer-zip
+  - dir release\out
 
 notifications:
 
