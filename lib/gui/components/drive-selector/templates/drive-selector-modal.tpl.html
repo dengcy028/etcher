@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">Select a Drive</h4>
-  <button class="close" ng-click="modal.closeModal('X')">&times;</button>
+  <button class="close" ng-click="modal.closeModal()">&times;</button>
 </div>
 
 <div class="modal-body">
@@ -56,6 +56,6 @@
 
 <div class="modal-footer">
   <button class="button button-primary button-block"
-    ng-click="modal.closeModal('Continue')"
+    ng-click="modal.closeModal()"
     ng-disabled="!modal.state.hasDrive()">Continue</button>
 </div>
